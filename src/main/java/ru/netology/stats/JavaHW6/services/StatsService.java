@@ -49,11 +49,27 @@ public class StatsService {
             amount = amount + e;
         }
 
-        for (int e = 0; e < sales.length; e++) {
-            if (sales[e] <= (amount/12)) {
-                monthOfWeakSales = e;
+        for (int sale : sales) {
+            if (sale < (amount / sales.length)) {
+                monthOfWeakSales = monthOfWeakSales + 1;
             }
         }
         return monthOfWeakSales;
+    }
+
+    public int salesAboveAverage(int @NotNull [] sales) {//поиск месяца с продажами выше среднего
+        int monthOfHightSales = 0;
+        int amount = 0;
+
+        for (int e : sales) {
+            amount = amount + e;
+        }
+
+        for (int sale : sales) {
+            if (sale > (amount / sales.length)) {
+                monthOfHightSales = monthOfHightSales + 1;
+            }
+        }
+        return monthOfHightSales;
     }
 }
