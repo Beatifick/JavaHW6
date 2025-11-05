@@ -65,4 +65,16 @@ public class StatsServiceTest {
 
         Assertions.assertEquals(expectedWeakMonth, actualWeakMonth);
     }
+
+    @Test
+
+    public void salesAboveAverage() {
+        StatsService service = new StatsService();
+
+        int[] hightMonth = {8, 15, 13, 16, 17, 21, 19, 20, 7, 7, 14, 18};
+        int expectedHightMonth = 7;
+        int actualHightMonth = service.salesAboveAverage(hightMonth);
+
+        Assertions.assertEquals(expectedHightMonth, actualHightMonth);
+    }
 }
