@@ -3,53 +3,47 @@ package ru.netology.stats.JavaHW6.services;
 import org.jetbrains.annotations.NotNull;
 
 public class StatsService {
-    public int sumSales(int @NotNull [] annualProfit) { //расчет суммы заработка за год
-        int amount = 0;
-        for (int j : annualProfit) {
-            amount = amount + j;
+    public long sumSales(long @NotNull [] annualProfit) { //расчет суммы заработка за год
+        long amount = 0;
+        for (long i : annualProfit) {
+            amount = amount + i;
         }
         return amount;
     }
 
-    public int midSumSales(int @NotNull [] averageSalesAmount) { //расчет средней суммы продаж в месяц
-        int midSum = 0;
-        for (int i : averageSalesAmount) {
-            midSum = midSum + i;
-        }
-        return midSum / 12;
+    public long midSumSales(long @NotNull [] averageSalesAmount) { //расчет средней суммы продаж в месяц
+        long amount = sumSales(averageSalesAmount);
+
+        return amount / 12;
     }
 
-    public int PeakSales(int @NotNull [] sales) { //посик месяца пиковых продаж
+    public int peakSales(long @NotNull [] sales) { //поиск месяца пиковых продаж
         int peakMonth = 0;
 
-        for (int q = 0; q < sales.length; q++) {
-            if (sales[q] >= sales[peakMonth]) {
-                peakMonth = q;
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i] >= sales[peakMonth]) {
+                peakMonth = i;
             }
         }
         return peakMonth + 1;
     }
 
-    public int minSales(int @NotNull [] sales) { //поиск месяца с минимальными продажами
+    public int minSales(long @NotNull [] sales) { //поиск месяца с минимальными продажами
         int minMonth = 0;
 
-        for (int w = 0; w < sales.length; w++) {
-            if (sales[w] <= sales[minMonth]) {
-                minMonth = w;
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i] <= sales[minMonth]) {
+                minMonth = i;
             }
         }
         return minMonth + 1;
     }
 
-    public int salesBelowAverage(int @NotNull [] sales) {//поиск месяца с продажами ниже среднего
+    public int salesBelowAverage(long @NotNull [] sales) {//поиск месяца с продажами ниже среднего
         int monthOfWeakSales = 0;
-        int amount = 0;
+        long amount = sumSales(sales);
 
-        for (int e : sales) {
-            amount = amount + e;
-        }
-
-        for (int sale : sales) {
+        for (long sale : sales) {
             if (sale < (amount / sales.length)) {
                 monthOfWeakSales = monthOfWeakSales + 1;
             }
@@ -57,15 +51,11 @@ public class StatsService {
         return monthOfWeakSales;
     }
 
-    public int salesAboveAverage(int @NotNull [] sales) {//поиск месяца с продажами выше среднего
+    public long salesAboveAverage(long[] sales) {//поиск месяца с продажами выше среднего
         int monthOfHightSales = 0;
-        int amount = 0;
+        long amount = sumSales(sales);
 
-        for (int e : sales) {
-            amount = amount + e;
-        }
-
-        for (int sale : sales) {
+        for (long sale : sales) {
             if (sale > (amount / sales.length)) {
                 monthOfHightSales = monthOfHightSales + 1;
             }
