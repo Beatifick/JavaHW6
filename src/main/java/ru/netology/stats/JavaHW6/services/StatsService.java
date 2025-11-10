@@ -12,9 +12,8 @@ public class StatsService {
     }
 
     public long midSumSales(long @NotNull [] averageSalesAmount) { //расчет средней суммы продаж в месяц
-        long amount = sumSales(averageSalesAmount);
 
-        return amount / 12;
+        return (sumSales(averageSalesAmount) / averageSalesAmount.length);
     }
 
     public int peakSales(long @NotNull [] sales) { //поиск месяца пиковых продаж
@@ -41,10 +40,9 @@ public class StatsService {
 
     public int salesBelowAverage(long @NotNull [] sales) {//поиск месяца с продажами ниже среднего
         int monthOfWeakSales = 0;
-        long amount = (sumSales(sales) / sales.length);
 
         for (long sale : sales) {
-            if (sale < amount) {
+            if (sale < (sumSales(sales) / sales.length)) {
                 monthOfWeakSales = monthOfWeakSales + 1;
             }
         }
@@ -53,10 +51,9 @@ public class StatsService {
 
     public long salesAboveAverage(long[] sales) {//поиск месяца с продажами выше среднего
         int monthOfHightSales = 0;
-        long amount = (sumSales(sales) / sales.length);
 
         for (long sale : sales) {
-            if (sale > amount) {
+            if (sale > (sumSales(sales) / sales.length)) {
                 monthOfHightSales = monthOfHightSales + 1;
             }
         }
