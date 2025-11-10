@@ -40,9 +40,10 @@ public class StatsService {
 
     public int salesBelowAverage(long @NotNull [] sales) {//поиск месяца с продажами ниже среднего
         int monthOfWeakSales = 0;
+        long average = (midSumSales(sales));
 
         for (long sale : sales) {
-            if (sale < (sumSales(sales) / sales.length)) {
+            if (sale < average) {
                 monthOfWeakSales = monthOfWeakSales + 1;
             }
         }
@@ -51,9 +52,10 @@ public class StatsService {
 
     public long salesAboveAverage(long[] sales) {//поиск месяца с продажами выше среднего
         int monthOfHightSales = 0;
+        long average = (midSumSales(sales));
 
         for (long sale : sales) {
-            if (sale > (sumSales(sales) / sales.length)) {
+            if (sale > average) {
                 monthOfHightSales = monthOfHightSales + 1;
             }
         }
